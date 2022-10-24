@@ -54,6 +54,7 @@ $(document).ready( function () {
     "columns": [
       { "data": "nome" },
       { "data": "quantidade" },
+      { "data": "quantidadedisponivel" },
       { "data": "preco" },
       { "data": "dataCadastro" },
       { "data": "button" }
@@ -317,6 +318,7 @@ $(document).ready( function () {
                             <tr class="tableheader">
                               <th>Nome</th>
                               <th>Quantidade</th>
+                              <th>Quantidade Disponivel</th>
                               <th>Preço</th>
                               <th>Data Cadastro</th>
                               <th width="17%">Ações</th>

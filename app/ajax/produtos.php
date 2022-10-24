@@ -67,10 +67,14 @@ function buscar($con){
 
 		$button .= $status;
 
+		$sqlDisponivel = mysqli_query($con, "SELECT SUM(qnt) as qnt FROM `produtosvendas` WHERE idProduto = $res->id");
+		$disponivel = mysqli_fetch_object($sqlDisponivel);
+
 		$data['data'][] = array(
 			'id' => $res->id,
 			'nome' => $res->nome,
 			'quantidade' => $res->quantidade,
+			'quantidadedisponivel' => $res->quantidade - $disponivel->qnt,
 			'preco' => 'R$ '.number_format($res->preco, 2, ',', '.'),
 			'dataCadastro' => date("d/m/Y H:i:s", strtotime($res->dataCadastro)),
 			'ativo' => $res->ativo,

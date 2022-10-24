@@ -23,7 +23,7 @@ function buscar($con, $dados){
         $dataFinal = date("Y-m-d");
     }
 
-    $sql = "SELECT *, v.id, c.nome FROM vendas as v left join clientes as c on v.idCliente = c.id inner join produtosvendas as pv on v.id = pv.idVenda WHERE v.ativo = 1 and v.dataVenda BETWEEN '$dataInicial' and '$dataFinal'  ";
+    $sql = "SELECT *, v.id, c.nome FROM vendas as v inner join clientes as c on v.idCliente = c.id inner join produtosvendas as pv on v.id = pv.idVenda WHERE v.ativo = 1 and v.dataVenda BETWEEN '$dataInicial' and '$dataFinal'  ";
 
 
 	if ($tipoPagamento != '') {
@@ -31,7 +31,7 @@ function buscar($con, $dados){
 	}
 
 
-	$sql .= ' group by v.id order by v.dataCadastro asc ';
+	$sql .= ' order by v.dataCadastro asc ';
 
 	$sqlVendas = mysqli_query($con, $sql);
 
@@ -87,7 +87,7 @@ function buscar($con, $dados){
 
         $sqlCliente = mysqli_query($con, "SELECT * FROM clientes where id = $vendas->idCliente");
 		$resCliente = mysqli_fetch_object($sqlCliente);
-		$nomeCliente = $resCliente->nome;
+		$nomeCliente = $vendas->nome;
         
         //titulares 
         $dados[] = array(
